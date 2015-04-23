@@ -1,0 +1,2 @@
+.controller "TableController", ($scope) ->
+  return

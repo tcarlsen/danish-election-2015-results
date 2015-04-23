@@ -7,6 +7,13 @@ $blue: #136A90;
 $light-blue: lighten($blue, 20);
 $lighter-blue: lighten($blue, 40);
 
+/* theming */
+$primary: #DE6828;
+$primary-light: #f87016;
+$secondary: #162C34;
+$positive: #2ECC40;
+$negative: #FF4136;
+
 body {
   font-family: 'Source Sans Pro', sans-serif;
   font-size: 16px;
