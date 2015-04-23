@@ -65,6 +65,12 @@ gulp.task('styles', function () {
 });
 /* Dom elements */
 gulp.task('dom', function () {
+  gulp.src('src/**/*.html')
+    .pipe(plumber())
+    .pipe(rename({dirname: '/partials'}))
+    .pipe(gulpif(build, cleanhtml()))
+    .pipe(gulp.dest(dest))
+
   return gulp.src(['src/*.jade', 'src/**/*.jade'])
     .pipe(plumber())
     .pipe(gulpif(!build, changed(dest)))
