@@ -1,0 +1,2 @@
+.controller "PartyController", ($scope) ->
+  return
