@@ -86,3 +86,9 @@
 
     blueBlockLetters
       .text (d) -> "cikov"
+
+    if svgWidth <= 780
+      redBlockLetters.attr "display", "none"
+      blueBlockLetters.attr "display", "none"
+      redBlockValue.text (d) -> d
+      blueBlockValue.text (d) -> d
