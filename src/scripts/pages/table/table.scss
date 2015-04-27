@@ -5,6 +5,9 @@
     background-color: #fff;
     padding: 4px 10px;
   }
+  td:nth-child(even) {
+    text-align: right;
+  }
 }
 
 .party-table {
@@ -38,7 +41,7 @@
     }
 
     &:not(:nth-child(2)) {
-      text-align: center;
+      //text-align: center;
     }
   }
 
