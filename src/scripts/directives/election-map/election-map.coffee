@@ -1,6 +1,6 @@
 .directive "electionMap", ->
   restrict: "A"
-  templateUrl: "/partials/election-map.html"
+  templateUrl: "partials/election-map.html"
   link: (scope, element, attrs) ->
     svg = d3.select "#dk_valgkredse"
     paths = svg.selectAll "path"
