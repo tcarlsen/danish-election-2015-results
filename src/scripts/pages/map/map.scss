@@ -7,22 +7,23 @@
 .tab-nav {
   position: relative;
   cursor: pointer;
-  background-color: $dark-grey;
+  background-color: #ddd;
   float: left;
-  min-width: 160px;
-  padding: 5px 0 5px 30px;
-  margin-right: 25px;
-  border-top-left-radius: 5px;
+  min-width: 10em;
+  padding: .3em 0.1em .3em 1.5em;
+  margin-right: 1.5em;
+  border-top-left-radius: .3em;
 
   &:after {
     position: absolute;
-    top: 0;
-    right: -25px;
+    /* top: 0; */
+    right: -1.4em;
     content: "";
-    border-top: 30px solid transparent;
+    border-top: 2em solid transparent;
     border-bottom: none;
-    border-left: 25px solid $dark-grey;
+    border-left: 1.5em solid #ddd;
     border-right: none;
+    bottom: 0;
   }
 
   &.active {
@@ -120,7 +121,7 @@
 .updated-region {
   float: left;
   margin: 2px 5px 0 0;
-  border: 1px solid #000;
+  border: 1px solid $black;
   border-radius: 4px;
   padding: 0 8px;
   font-size: 11px;
