@@ -1,14 +1,17 @@
 .overview-table {
   td {
     background-color: $white;
-  }
-  td:nth-child(even) {
-    text-align: right;
+    &:nth-child(even) {
+      text-align: right;
+      border-right: 2px solid $grey;
+    }
+    &:nth-child(odd) {
+      font-weight: 600;
+    }
   }
 }
 
 .party-table {
-
   td {
     &:first-child {
       width: 40px;
@@ -32,5 +35,17 @@
 
   &:hover {
     background-color: $primary-light;
+  }
+}
+
+@media (max-width: 800px) {
+  .overview-table {
+    td {
+      float: left;
+      width: 50%;
+      box-sizing: border-box;
+      border: none;
+      border-bottom: 2px solid $grey;
+    }
   }
 }
