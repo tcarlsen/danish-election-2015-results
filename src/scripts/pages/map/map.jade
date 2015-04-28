@@ -7,36 +7,9 @@ div.tab-container
   div.tab-body
     svg.block-poll(block-poll)
     ul.party-poll-header.mobile-hide
-      li.party-header
-        img(src="img/a_small.png" srcset="img/a_small@2x.png 2x" alt="Socialdemokraterne")
-        p XX,X%
-      li.party-header
-        img(src="img/b_small.png" srcset="img/b_small@2x.png 2x" alt="De Radikale")
-        p XX,X%
-      li.party-header
-        img(src="img/f_small.png" srcset="img/f_small@2x.png 2x" alt="Socialistisk Folkeparti")
-        p XX,X%
-      li.party-header
-        img(src="img/ø_small.png" srcset="img/ø_small@2x.png 2x" alt="Enhedslisten")
-        p XX,X%
-      li.party-header
-        img(src="img/å_small.png" srcset="img/å_small@2x.png 2x" alt="Alternativet")
-        p XX,X%
-      li.party-header
-        img(src="img/c_small.png" srcset="img/c_small@2x.png 2x" alt="De Konservative")
-        p XX,X%
-      li.party-header
-        img(src="img/i_small.png" srcset="img/i_small@2x.png 2x" alt="Liberal Alliance")
-        p XX,X%
-      li.party-header
-        img(src="img/k_small.png" srcset="img/k_small@2x.png 2x" alt="Kristendemokraterne")
-        p XX,X%
-      li.party-header
-        img(src="img/o_small.png" srcset="img/o_small@2x.png 2x" alt="Dansk Folkeparti")
-        p XX,X%
-      li.party-header
-        img(src="img/v_small.png" srcset="img/v_small@2x.png 2x" alt="Venstre")
-        p XX,X%
+      li.party-header(ng-repeat="party in json.map.parties")
+        img(src="img/{{party.party_letter}}_small.png" srcset="img/{{party.party_letter}}_small@2x.png 2x" alt="{{party.party_name}}")
+        p {{party.mandates}} man.
     .clearfix
   div.election-map.mobile-hide(election-map)
   div.help-box.mobile-hide
@@ -55,12 +28,7 @@ div.tab-container
       p.block-text få valgsteder i kredsen optalt
   ul.latest-updates.mobile-hide
     li.updated-text Seneste optalte:
-    li.updated-region Kalundborg #[div.stripe.blue]
-    li.updated-region Køge #[div.stripe.light-red]
-    li.updated-region Odense #[div.stripe.red]
-    li.updated-region Hørsholm #[div.stripe.light-blue]
-    li.updated-region København #[div.stripe.lighter-blue]
-    li.updated-region AArhus #[div.stripe.lighter-red]
+    li.updated-region(ng-repeat="latest in json.map.latest_votes_counted_complete") {{latest.name}} #[div.stripe.blue]
   .clearfix
   p.help-text.mobile-hide Klik på kortet for at se kredsresultater, eller klik #[a(href="") her] for at gå direkte til landsresultatet
 div.container.mobile-show
@@ -72,18 +40,8 @@ div.container.mobile-show
         th.number Procenter
         th.number Mandater
     tbody
-      tr
-        td.party-logo #[img(src="img/a_small.png" srcset="img/a_small@2x.png 2x" alt="Socialdemokraterne")]
-        td.number 919528
-        td.number 29.5%
-        td.number 773
-      tr
-        td.party-logo #[img(src="img/a_small.png" srcset="img/a_small@2x.png 2x" alt="Socialdemokraterne")]
-        td.number 919528
-        td.number 29.5%
-        td.number 773
-      tr
-        td.party-logo #[img(src="img/a_small.png" srcset="img/a_small@2x.png 2x" alt="Socialdemokraterne")]
-        td.number 919528
-        td.number 29.5%
-        td.number 773
+      tr(ng-repeat="party in json.map.parties")
+        td.party-logo #[img(src="img/{{party.party_letter}}_small.png" srcset="img/{{party.party_letter}}_small@2x.png 2x" alt="{{party.party_name}}")]
+        td.number {{party.votes}}
+        td.number {{party.votes_pct}}%
+        td.number {{party.mandates}}
