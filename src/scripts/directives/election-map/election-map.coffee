@@ -9,7 +9,9 @@
         red = $filter('number')(data.red_block_votes_pct, 1)
         blue = $filter('number')(data.blue_block_votes_pct, 1)
 
-        html = "<h2 class=\"map-tip-header\">#{data.name}</h2>"
+        html = "<h2 class=\"map-tip-header\">"
+        html+= "<div class=\"map-tip-counted\">Optalt: #{data.votes_counted_pct}%</div>"
+        html+= "#{data.name}</h2>"
         html+= "<table class=\"map-tip-table striped\">"
         html+= "<tbody>"
 
