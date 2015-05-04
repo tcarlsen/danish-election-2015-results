@@ -3,7 +3,7 @@
     .when "/map",
       templateUrl: "partials/map.html"
       controller: "MapController"
-    .when "/table/:id",
+    .when "/table/:path/:id?",
       templateUrl: "partials/table.html"
       controller: "TableController"
     .when "/party/:id",

@@ -1,25 +1,26 @@
 ul.breadcrumbs
   li.breadcrumb Folketingsvalg 2015
-  li.breadcrumb Landsresultat
+  li.breadcrumb ...
+  li.breadcrumb {{json.table.name}}
 .clearfix
 div.table-container
-  h1.header Landsresultat
+  h1.header {{json.table.name}}
   table.overview-table
     tr
       td Senest opdateret:
-      td 20. maj 2014 12:30
+      td {{json.table.updated_at}}
       td Stemmerberettigede:
-      td.number 40.642
+      td.number {{json.table.votes_allowed | number}}
     tr
       td Procent optalt:
-      td.number 100%
+      td.number {{json.table.votes_counted_pct | number}}%
       td Stemmeprocent:
-      td.number 55.3%
+      td.number {{json.table.votes_pct | number}}%
     tr
       td Optalte storkredse
-      td 10 af 10
+      td XX af XX
       td Optalte stemmer:
-      td.number 22.478
+      td.number {{json.table.votes_made | number}}
   table.party-table.striped
     thead
       tr
@@ -31,43 +32,21 @@ div.table-container
         th.number Mandater
         th.number.mobile-hide Mandater +/- #[i.ion-information-circled]
     tbody
-      tr
-        td.party-logo #[img(src="img/a_small.png" srcset="img/a_small@2x.png 2x" alt="Socialdemokraterne")]
-        td.mobile-hide Socialdemokraterne
-        td.number 919528
-        td.number 29.5%
-        td.number.mobile-hide (-1.1%) #[i.ion-chevron-up.positive]
-        td.number 773
-        td.number.mobile-hide (-28) #[i.ion-chevron-up.positive]
-      tr
-        td.party-logo #[img(src="img/a_small.png" srcset="img/a_small@2x.png 2x" alt="Socialdemokraterne")]
-        td.mobile-hide Socialdemokraterne
-        td.number 919528
-        td.number 29.5%
-        td.number.mobile-hide (-1.1%) #[i.ion-chevron-up.positive]
-        td.number 773
-        td.number.mobile-hide (-28) #[i.ion-chevron-up.positive]
-      tr
-        td.party-logo #[img(src="img/a_small.png" srcset="img/a_small@2x.png 2x" alt="Socialdemokraterne")]
-        td.mobile-hide Socialdemokraterne
-        td.number 919528
-        td.number 29.5%
-        td.number.mobile-hide (-1.1%) #[i.ion-chevron-down.negative]
-        td.number 773
-        td.number.mobile-hide (-28) #[i.ion-chevron-down.negative]
-      tr
-        td.party-logo #[img(src="img/a_small.png" srcset="img/a_small@2x.png 2x" alt="Socialdemokraterne")]
-        td.mobile-hide Socialdemokraterne
-        td.number 919528
-        td.number 29.5%
-        td.number.mobile-hide (-1.1%) #[i.ion-chevron-up.positive]
-        td.number 773
-        td.number.mobile-hide (-28) #[i.ion-chevron-up.positive]
+      tr(ng-repeat="party in json.table.results")
+        td.party-logo #[img(src="img/{{party.party_letter}}_small.png" srcset="img/{{party.party_letter}}_small@2x.png 2x" alt="{{party.party_name}}")]
+        td.mobile-hide {{party.party_name}}
+        td.number {{party.votes | number}}
+        td.number {{party.votes_pct | number}}%
+        td.number.mobile-hide ({{party.votes_deviation | number}}%) #[i(ng-class="{'ion-chevron-up positive' : party.votes_deviation > 0, 'ion-chevron-down negative' : party.votes_deviation < 0, 'ion-minus' : party.votes_deviation == 0}")]
+        td.number {{party.mandates | number}}
+        td.number.mobile-hide ({{party.mandates_deviation | number}}) #[i(ng-class="{'ion-chevron-up positive' : party.mandates_deviation > 0, 'ion-chevron-down negative' : party.mandates_deviation < 0, 'ion-minus' : party.mandates_deviation == 0}")]
   div
-    strong Storkredse
+    strong(ng-if="json.table.areatype == 'L'") Storkredse
+    strong(ng-if="json.table.areatype == 'S'") Kredse i {{json.table.name}}
+    strong(ng-if="json.table.areatype == 'K'") Valgsteder i {{json.table.name}}
     ul.constituency-nav
-      li.constituency Københavns Storkreds
-      li.constituency Københavns Omegns Storkreds
-      li.constituency Nordsjællands Storkreds
-      li.constituency ...
+      li.constituency(ng-repeat="great in json.table.greater")
+        a(ng-href="#/table{{great.path}}") {{great.name}}
+      li.constituency(ng-repeat="constituency in json.table.constituencies")
+        a(ng-href="#/table{{constituency.path}}") {{constituency.name}}
     .clearfix
