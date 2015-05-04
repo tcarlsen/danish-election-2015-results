@@ -4,7 +4,7 @@
 
   $scope.json = $scope.json or {}
 
-  $http.get "//IP-ADRESS/#{apiUrl}"
+  $http.get "//10.86.233.44:8000/#{apiUrl}"
     .success (data) ->
       $scope.json.table = data
     .error (data, status, headers, config) ->
