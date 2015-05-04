@@ -17,7 +17,9 @@ div.table-container
       td Stemmeprocent:
       td.number {{json.table.votes_pct | number}}%
     tr
-      td Optalte storkredse
+      td(ng-if="json.table.areatype == 'L'") Optalte storkredse
+      td(ng-if="json.table.areatype == 'S'") Optalte kredse
+      td(ng-if="json.table.areatype == 'K'") Optalte valgsteder
       td XX af XX
       td Optalte stemmer:
       td.number {{json.table.votes_made | number}}
