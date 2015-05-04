@@ -1,4 +1,4 @@
-.directive "electionMap", ($filter) ->
+.directive "electionMap", ($filter, $location, $rootScope) ->
   restrict: "A"
   templateUrl: "partials/election-map.html"
   link: (scope, element, attrs) ->
@@ -50,6 +50,10 @@
           .attr "class", (d) -> "map #{classes(d.block_winner, d.votes_counted_pct)}"
           .on "mouseover", (d) -> tip.show d
           .on "mouseout", tip.hide
+          .on "click", (d) ->
+            tip.destroy()
+            scope.$apply ->
+              $location.path "table/" + d.ident
 
     svg.call tip
 
