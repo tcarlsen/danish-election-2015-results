@@ -48,7 +48,21 @@
         svg.select "##{mapId}"
           .data [constituency]
           .attr "class", (d) -> "map #{classes(d.block_winner, d.votes_counted_pct)}"
-          .on "mouseover", (d) -> tip.show d
+          .on "mouseover", (d) ->
+            targetRect = this.getBBox()
+            parentRect = this.parentElement.getBoundingClientRect()
+            tipDirection = ''
+            if targetRect.y > parentRect.height / 2
+              tipDirection = 'n'
+            else
+              tipDirection = 's'
+            if targetRect.x > parentRect.width / 2
+              tipDirection += 'w'
+            else
+              tipDirection += 'e'
+            tip
+              .direction tipDirection
+              .show d
           .on "mouseout", tip.hide
           .on "click", (d) ->
             tip.destroy()
