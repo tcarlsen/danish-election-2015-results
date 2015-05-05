@@ -1,5 +1,6 @@
 ul.breadcrumbs
-  li.breadcrumb Folketingsvalg 2015
+  li.breadcrumb 
+    a(ng-href="#/map") Folketingsvalg 2015
   li.breadcrumb ...
   li.breadcrumb {{json.table.name}}
 .clearfix
@@ -20,7 +21,9 @@ div.table-container
       td(ng-if="json.table.areatype == 'L'") Optalte storkredse
       td(ng-if="json.table.areatype == 'S'") Optalte kredse
       td(ng-if="json.table.areatype == 'K'") Optalte valgsteder
-      td XX af XX
+      td(ng-if="json.table.areatype == 'D'")
+      td(ng-if="json.table.areatype == 'D'")
+      td(ng-if="json.table.areatype != 'D'") XX af XX
       td Optalte stemmer:
       td.number {{json.table.votes_made | number}}
   table.party-table.striped
@@ -31,8 +34,8 @@ div.table-container
         th.number Stemmetal
         th.number Procenter
         th.number.mobile-hide Procenter +/- #[i.ion-information-circled]
-        th.number(ng-if="json.table.areatype != 'K'") Mandater
-        th.number.mobile-hide(ng-if="json.table.areatype != 'K'") Mandater +/- #[i.ion-information-circled]
+        th.number(ng-if="json.table.areatype != 'K' && json.table.areatype != 'D'") Mandater
+        th.number.mobile-hide(ng-if="json.table.areatype != 'K' && json.table.areatype != 'D'") Mandater +/- #[i.ion-information-circled]
     tbody
       tr(ng-repeat="party in json.table.results")
         td.party-logo #[img(src="img/{{party.party_letter}}_small.png" srcset="img/{{party.party_letter}}_small@2x.png 2x" alt="{{party.party_name}}")]
@@ -40,8 +43,8 @@ div.table-container
         td.number {{party.votes | number}}
         td.number {{party.votes_pct | number}}%
         td.number.mobile-hide ({{party.votes_deviation | number}}%) #[i(ng-class="{'ion-chevron-up positive' : party.votes_deviation > 0, 'ion-chevron-down negative' : party.votes_deviation < 0, 'ion-minus' : party.votes_deviation == 0}")]
-        td.number(ng-if="json.table.areatype != 'K'") {{party.mandates | number}}
-        td.number.mobile-hide(ng-if="json.table.areatype != 'K'") ({{party.mandates_deviation | number}}) #[i(ng-class="{'ion-chevron-up positive' : party.mandates_deviation > 0, 'ion-chevron-down negative' : party.mandates_deviation < 0, 'ion-minus' : party.mandates_deviation == 0}")]
+        td.number(ng-if="json.table.areatype != 'K' && json.table.areatype != 'D'") {{party.mandates | number}}
+        td.number.mobile-hide(ng-if="json.table.areatype != 'K' && json.table.areatype != 'D'") ({{party.mandates_deviation | number}}) #[i(ng-class="{'ion-chevron-up positive' : party.mandates_deviation > 0, 'ion-chevron-down negative' : party.mandates_deviation < 0, 'ion-minus' : party.mandates_deviation == 0}")]
   div
     strong(ng-if="json.table.areatype == 'L'") Storkredse
     strong(ng-if="json.table.areatype == 'S'") Kredse i {{json.table.name}}
