@@ -30,12 +30,22 @@
   background-color: $primary;
   margin: 5px 10px 5px 0;
   padding: 8px 12px;
-  color: $white;
   cursor: pointer;
 
   &:hover {
     background-color: $primary-light;
   }
+
+  a {
+    color: $white;
+    text-decoration: none;
+  }
+}
+
+.ion-minus {
+  width: 15.75px;
+  color: $dark-grey;
+  display: inline-block;
 }
 
 @media (max-width: 800px) {
