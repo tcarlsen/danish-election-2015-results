@@ -50,10 +50,6 @@ div.table-container
     strong(ng-if="json.table.areatype == 'S'") Kredse i {{json.table.name}}
     strong(ng-if="json.table.areatype == 'K'") Valgsteder i {{json.table.name}}
     ul.constituency-nav
-      li.constituency(ng-repeat="great in json.table.greater")
-        a(ng-href="#/table{{great.path}}") {{great.name}}
-      li.constituency(ng-repeat="constituency in json.table.constituencies")
-        a(ng-href="#/table{{constituency.path}}") {{constituency.name}}
-      li.constituency(ng-repeat="poll in json.table.polling")
-        a(ng-href="#/table{{poll.path}}") {{poll.name}}
+      li.constituency(ng-repeat="location in json.table.locations")
+        a(ng-href="#/table{{location.path}}") {{location.name}}
     .clearfix
