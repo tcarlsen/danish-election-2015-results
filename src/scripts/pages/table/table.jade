@@ -2,7 +2,7 @@ ul.breadcrumbs
   li.breadcrumb 
     a(ng-href="#/map") Folketingsvalg 2015
   li.breadcrumb(ng-repeat="hier in json.table.hierarchy")
-    a(ng-href="#/table{{hier.path}}") {{hier.name}}
+    a(ng-href="#/resultater{{hier.path}}") {{hier.name}}
 .clearfix
 div.table-container
   h1.header {{json.table.name}}
@@ -51,5 +51,5 @@ div.table-container
     strong(ng-if="json.table.areatype == 'K'") Valgsteder i {{json.table.name}}
     ul.constituency-nav
       li.constituency(ng-repeat="location in json.table.locations")
-        a(ng-href="#/table{{location.path}}") {{location.name}}
+        a(ng-href="#/resultater{{location.path}}") {{location.name}}
     .clearfix

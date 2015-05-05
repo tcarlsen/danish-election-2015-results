@@ -53,7 +53,7 @@
           .on "click", (d) ->
             tip.destroy()
             scope.$apply ->
-              $location.path "table#{d.path}"
+              $location.path "resultater#{d.path}"
 
     svg.call tip
 
