@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 html(lang="da" ng-app)
-head
-  meta(charset="UTF-8")
-  meta(http-equiv="X-UA-Compatible" content="IE=edge")
-  meta(name="viewport" content="width=device-width, initial-scale=1")
-  title Folketingsvalg 2015 - Resultater
-  link(rel="stylesheet" href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700")
-  link(rel="stylesheet" href="bower_components/ionicons/css/ionicons.css")
-  link(rel="stylesheet" href="styles.min.css")
-body
-  div(ng-view autoscroll)
-  script(src="bower_components/angular/angular.js")
-  script(src="bower_components/angular-touch/angular-touch.js")
-  script(src="bower_components/angular-route/angular-route.js")
-  script(src="bower_components/d3/d3.js")
-  script(src="bower_components/d3-tip/index.js")
-  script(src="scripts.min.js")
+  head
+    meta(charset="UTF-8")
+    meta(http-equiv="X-UA-Compatible" content="IE=edge")
+    meta(name="viewport" content="width=device-width, initial-scale=1")
+    title Folketingsvalg 2015 - Resultater
+    link(rel="stylesheet" href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700")
+    link(rel="stylesheet" href="bower_components/ionicons/css/ionicons.css")
+    link(rel="stylesheet" href="styles.min.css")
+  body
+    div(ng-view autoscroll election-themer="stiften")
+    script(src="bower_components/angular/angular.js")
+    script(src="bower_components/angular-touch/angular-touch.js")
+    script(src="bower_components/angular-route/angular-route.js")
+    script(src="bower_components/d3/d3.js")
+    script(src="bower_components/d3-tip/index.js")
+    script(src="scripts.min.js")
