@@ -49,6 +49,8 @@
           .data [constituency]
           .attr "class", (d) -> "map #{classes(d.block_winner, d.votes_counted_pct)}"
           .on "mouseover", (d) ->
+            d3.select(this).attr "class", "map selected"
+
             targetRect = this.getBBox()
             parentRect = this.parentElement.getBoundingClientRect()
             tipDirection = ''
@@ -63,7 +65,9 @@
             tip
               .direction tipDirection
               .show d
-          .on "mouseout", tip.hide
+          .on "mouseout", (d) ->
+            d3.select(this).attr "class", "map #{classes(d.block_winner, d.votes_counted_pct)}"
+            tip.hide()
           .on "click", (d) ->
             tip.destroy()
             scope.$apply ->

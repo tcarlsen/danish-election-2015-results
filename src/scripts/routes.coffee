@@ -6,7 +6,7 @@
     .when "/resultater/:path/:id?",
       templateUrl: "partials/table.html"
       controller: "TableController"
-    .when "/party/:id",
+    .when "/resultater/:path/:id/:party",
       templateUrl: "partials/party.html"
       controller: "PartyController"
     .otherwise "/"

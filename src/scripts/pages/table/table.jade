@@ -38,8 +38,10 @@ div.table-container
         th.number.mobile-hide(ng-if="json.table.areatype != 'K' && json.table.areatype != 'D'") Mandater +/- #[i.ion-information-circled]
     tbody
       tr(ng-repeat="party in json.table.results")
-        td.party-logo #[img(src="img/{{party.party_letter}}_small.png" srcset="img/{{party.party_letter}}_small@2x.png 2x" alt="{{party.party_name}}")]
-        td.mobile-hide {{party.party_name}}
+        td.party-logo 
+          a(ng-href="#/resultater{{party.path}}") #[img(src="img/{{party.party_letter}}_small.png" srcset="img/{{party.party_letter}}_small@2x.png 2x" alt="{{party.party_name}}")]
+        td.mobile-hide 
+          a(ng-href="#/resultater{{party.path}}") {{party.party_name}}
         td.number {{party.votes | number}}
         td.number {{party.votes_pct | number}}%
         td.number.mobile-hide ({{party.votes_deviation | number}}%) #[i(ng-class="{'ion-chevron-up positive' : party.votes_deviation > 0, 'ion-chevron-down negative' : party.votes_deviation < 0, 'ion-minus' : party.votes_deviation == 0}")]
