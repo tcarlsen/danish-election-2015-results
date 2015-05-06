@@ -115,5 +115,10 @@ th {
 @import "../scripts/directives/block-poll/block-poll";
 @import "../scripts/directives/election-map/election-map";
 
+// Import pages SCSS
+@import "../scripts/pages/map/map";
+@import "../scripts/pages/party/party";
+@import "../scripts/pages/table/table";
+
 // Import responsive SCSS
 @import "responsive";
