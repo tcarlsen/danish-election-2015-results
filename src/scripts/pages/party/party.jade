@@ -1,12 +1,12 @@
 ul.breadcrumbs
-  li.breadcrumb 
+  li.breadcrumb
     a(ng-href="#/map") Folketingsvalg 2015
   li.breadcrumb(ng-repeat="hier in json.party.hierarchy")
     a(ng-href="#/resultater{{hier.path}}") {{hier.name}}
 .clearfix
 div.table-container
   h1.header
-    i.partylogo.large(ng-class="json.party.party_letter")
+    i.partylogo(ng-class="json.party.party_letter")
     | {{json.party.party_name}}
   p Personlige stemmer i&nbsp;
     strong {{json.party.name}}
@@ -22,4 +22,4 @@ div.table-container
       tr(ng-repeat="candidate in json.party.results")
         td {{candidate.name}}
         td.number {{candidate.votes | number}}
-      
+
