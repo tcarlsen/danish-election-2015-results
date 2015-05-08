@@ -42,7 +42,7 @@ gulp.task('scripts', function () {
     .pipe(concat('scripts.min.js'))
     .pipe(coffee())
     .pipe(ngannotate())
-    .pipe(uglify())
+    //.pipe(uglify())
     .pipe(gulpif(!build, sourcemaps.write()))
     .pipe(gulpif(build, header(banner, {pkg: pkg})))
     .pipe(gulp.dest(dest))
@@ -50,16 +50,16 @@ gulp.task('scripts', function () {
 });
 /* Styles */
 gulp.task('styles', function () {
-  return gulp.src('src/**/*.scss')
+  return gulp.src('src/styles/themes/*.scss')
     .pipe(plumber())
     .pipe(gulpif(!build, changed(dest)))
     .pipe(gulpif(!build, sourcemaps.init()))
-    .pipe(concat('styles.min.css'))
     .pipe(sass())
     .pipe(autoprefixer())
-    .pipe(minifycss())
+    //.pipe(minifycss())
     .pipe(gulpif(!build, sourcemaps.write()))
     .pipe(gulpif(build, header(banner, {pkg: pkg})))
+    .pipe(rename({dirname: '/themes/'}))
     .pipe(gulp.dest(dest))
     .pipe(connect.reload());
 });

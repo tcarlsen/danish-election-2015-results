@@ -9,15 +9,8 @@ $blue: #136A90;
 $light-blue: lighten($blue, 20);
 $lighter-blue: lighten($blue, 40);
 
-/* theming */
-$primary: #DE6828;
-$primary-light: #f87016;
-$secondary: #162C34;
-$positive: #2ECC40;
-$negative: #FF4136;
-
 body {
-  font-family: 'Source Sans Pro', sans-serif;
+  font-family: $main-font;
   margin: 0;
 }
 
@@ -106,7 +99,6 @@ th {
 .negative:before {
   color: $negative;
 }
-
 .header {
   margin: 0;
   line-height: 1.2em;
@@ -117,3 +109,16 @@ th {
   vertical-align: bottom;
   margin-right: 0.3em;
 }
+
+
+// Import directive SCSS
+@import "../scripts/directives/block-poll/block-poll";
+@import "../scripts/directives/election-map/election-map";
+
+// Import pages SCSS
+@import "../scripts/pages/map/map";
+@import "../scripts/pages/party/party";
+@import "../scripts/pages/table/table";
+
+// Import responsive SCSS
+@import "responsive";
