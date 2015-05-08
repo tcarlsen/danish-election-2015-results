@@ -6,7 +6,7 @@ ul.breadcrumbs
 .clearfix
 div.table-container
   h1.header
-    img.party-logo(src="img/{{json.party.party_letter}}_big.png" srcset="img/{{json.party.party_letter}}_big@2x.png 2x" alt="{{json.party.party_name}}")
+i.partylogo.large(ng-class="json.party.party_letter")
     | {{json.party.party_name}}
   p Personlige stemmer i&nbsp;
     strong {{json.party.name}}

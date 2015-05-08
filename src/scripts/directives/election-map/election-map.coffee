@@ -17,7 +17,7 @@
 
         for party in data.parties
           html+= "<tr>"
-          html+= "<td><img src=\"img/#{party.party_letter}_small.png\" srcset=\"img/#{party.party_letter}_small@2x.png 2x\"></td>"
+          html+= "<td><i class=\"partylogo #{party.party_letter}\"></i></td>"
           html+= "<td>#{party.party_name}</td>"
           html+= "<td class=\"number\">#{party.votes_pct}%</td>"
           html+= "</tr>"
