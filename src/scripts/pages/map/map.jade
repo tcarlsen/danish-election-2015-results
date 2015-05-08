@@ -8,7 +8,7 @@ div.tab-container
     svg.block-poll(block-poll)
     ul.party-poll-header.mobile-hide
       li.party-header(ng-repeat="party in json.map.parties")
-        i.partylogo(ng-class="party.party_letter")
+        i.partylogo.small(ng-class="party.party_letter")
         p {{party.mandates}} man.
     .clearfix
   div.election-map.mobile-hide(election-map)
