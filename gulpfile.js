@@ -2,8 +2,10 @@
 var
   gulp = require('gulp'),
   del = require('del'),
+  lazypipe = require('lazypipe'),
   coffee = require('gulp-coffee'),
   ngannotate = require('gulp-ng-annotate'),
+  templatecache = require('gulp-angular-templatecache'),
   rename = require("gulp-rename"),
   uglify = require('gulp-uglify'),
   sass = require('gulp-sass'),
@@ -33,6 +35,11 @@ var banner = [
 
 var build = false;
 var dest = 'app';
+
+var ngcache = lazypipe()
+  .pipe(rename, {dirname: '/'})
+  .pipe(templatecache, {standalone: true})
+  .pipe(gulp.dest, '.tmp');
 /* Scripts */
 gulp.task('scripts', function () {
   return gulp.src('src/**/*.coffee')
@@ -45,8 +52,7 @@ gulp.task('scripts', function () {
     .pipe(uglify())
     .pipe(gulpif(!build, sourcemaps.write()))
     .pipe(gulpif(build, header(banner, {pkg: pkg})))
-    .pipe(gulp.dest(dest))
-    .pipe(connect.reload());
+    .pipe(gulp.dest('.tmp'));
 });
 /* Styles */
 gulp.task('styles', function () {
@@ -77,14 +83,10 @@ gulp.task('dom', function () {
     .pipe(jade({pretty: true}))
     .pipe(gulpif(build, cleanhtml()))
     .pipe(gulpif(function (file) {
-      if (file.relative === "index.html") {
-        return false
+      if (file.relative !== "index.html") {
+        return true
       }
-
-      return true;
-    }, rename({dirname: '/partials'})))
-    .pipe(gulp.dest(dest))
-    .pipe(connect.reload());
+    }, ngcache(), gulp.dest(dest)));
 });
 /* Images */
 gulp.task('images', function () {
@@ -95,11 +97,18 @@ gulp.task('images', function () {
     .pipe(gulp.dest(dest + '/img'))
     .pipe(connect.reload());
 });
+/* Merge scripts */
+gulp.task('merge-scripts', ['dom', 'scripts'], function () {
+  return gulp.src('.tmp/*.js')
+    .pipe(plumber())
+    .pipe(concat('scripts.min.js'))
+    .pipe(gulp.dest(dest))
+    .pipe(connect.reload());
+});
 /* Watch task */
 gulp.task('watch', function () {
-  gulp.watch('src/**/*.coffee', ['scripts']);
+  gulp.watch(['src/**/*.coffee', 'src/**/*.jade'], ['merge-scripts']);
   gulp.watch('src/**/*.scss', ['styles']);
-  gulp.watch('src/**/*.jade', ['dom']);
   gulp.watch('src/images/**', ['images']);
 });
 /* Server */
@@ -116,7 +125,7 @@ gulp.task('build', function () {
   dest = 'build';
 
   del(dest);
-  gulp.start('scripts', 'styles', 'dom', 'images');
+  gulp.start('merge-scripts', 'styles', 'images');
 });
 /* Default task */
-gulp.task('default', ['connect', 'scripts', 'styles', 'dom', 'images', 'watch']);
+gulp.task('default', ['connect', 'merge-scripts', 'styles', 'images', 'watch']);

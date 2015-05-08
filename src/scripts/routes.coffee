@@ -1,15 +1,15 @@
 .config ($routeProvider) ->
   $routeProvider
     .when "/",
-      templateUrl: "partials/map.html"
+      templateUrl: "map.html"
       controller: "MapController"
     .when "/resultater/landet/:party",
-      templateUrl: "partials/party.html"
+      templateUrl: "party.html"
       controller: "PartyController"
     .when "/resultater/:path/:id?",
-      templateUrl: "partials/table.html"
+      templateUrl: "table.html"
       controller: "TableController"
     .when "/resultater/:path/:id/:party",
-      templateUrl: "partials/party.html"
+      templateUrl: "party.html"
       controller: "PartyController"
     .otherwise "/"
