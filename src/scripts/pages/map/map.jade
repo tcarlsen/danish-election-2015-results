@@ -8,7 +8,7 @@ div.tab-container
     svg.block-poll(block-poll)
     ul.party-poll-header.mobile-hide
       li.party-header(ng-repeat="party in json.map.parties")
-        img(src="img/{{party.party_letter}}_small.png" srcset="img/{{party.party_letter}}_small@2x.png 2x" alt="{{party.party_name}}")
+        i.partylogo(ng-class="party.party_letter")
         p {{party.mandates}} man.
     .clearfix
   div.election-map.mobile-hide(election-map)
@@ -41,7 +41,7 @@ div.container.mobile-show
         th.number Mandater
     tbody
       tr(ng-repeat="party in json.map.parties")
-        td.party-logo #[img(src="img/{{party.party_letter}}_small.png" srcset="img/{{party.party_letter}}_small@2x.png 2x" alt="{{party.party_name}}")]
+        td.party-logo #[i.partylogo.large(ng-class="party.party_letter")]
         td.number {{party.votes}}
         td.number {{party.votes_pct}}%
         td.number {{party.mandates}}
