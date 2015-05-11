@@ -92,7 +92,14 @@ gulp.task('dom', function () {
 });
 /* Bower scripts */
 gulp.task('bower', function () {
-  return gulp.src(bowerScriptFiles.minified.concat(bowerScriptFiles.minifiedNotFound))
+  gulp.src(bowerScriptFiles.minifiedNotFound)
+    .pipe(plumber())
+    .pipe(gulpif(!build, changed('.tmp')))
+    .pipe(concat('bower-min.js'))
+    .pipe(uglify())
+    .pipe(gulp.dest('.tmp'));
+
+  return gulp.src(bowerScriptFiles.minified)
     .pipe(plumber())
     .pipe(gulpif(!build, changed('.tmp')))
     .pipe(concat('bower.js'))
