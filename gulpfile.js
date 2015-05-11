@@ -95,7 +95,7 @@ gulp.task('bower', function () {
   gulp.src(bowerScriptFiles.minifiedNotFound)
     .pipe(plumber())
     .pipe(gulpif(!build, changed('.tmp')))
-    .pipe(concat('bower-min.js'))
+    .pipe(concat('bower2.js'))
     .pipe(uglify())
     .pipe(gulp.dest('.tmp'));
 
