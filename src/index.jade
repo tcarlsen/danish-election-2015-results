@@ -1,11 +1,13 @@
 <!DOCTYPE html>
-html(lang="da" ng-app)
+html(lang="da")
   head
     meta(charset="UTF-8")
     meta(http-equiv="X-UA-Compatible" content="IE=edge")
     meta(name="viewport" content="width=device-width, initial-scale=1")
     title Folketingsvalg 2015 - Resultater
-    link#themecss(rel="stylesheet" href="themes/default.css")
   body
-    div(ng-view autoscroll election-themer="")
+    //- Embed start
+    link#themecss(rel="stylesheet" href="themes/default.css")
+    div(ng-app ng-view autoscroll election-themer="")
     script(src="scripts.min.js")
+    //- Embed end
