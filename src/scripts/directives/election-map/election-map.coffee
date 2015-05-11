@@ -52,7 +52,7 @@
             d3.select(this).attr "class", "map selected"
 
             targetRect = this.getBBox()
-            parentRect = this.parentElement.getBoundingClientRect()
+            parentRect = element[0].getBoundingClientRect();
             tipDirection = ''
             if targetRect.y > parentRect.height / 2
               tipDirection = 'n'
