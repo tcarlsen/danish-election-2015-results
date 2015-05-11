@@ -3,6 +3,7 @@ var
   gulp = require('gulp'),
   del = require('del'),
   lazypipe = require('lazypipe'),
+  bowerMain = require('bower-main'),
   coffee = require('gulp-coffee'),
   ngannotate = require('gulp-ng-annotate'),
   templatecache = require('gulp-angular-templatecache'),
@@ -35,7 +36,7 @@ var banner = [
 
 var build = false;
 var dest = 'app';
-
+var bowerScriptFiles = bowerMain('js','min.js');
 var ngcache = lazypipe()
   .pipe(rename, {dirname: '/'})
   .pipe(templatecache, {standalone: true})
@@ -44,7 +45,7 @@ var ngcache = lazypipe()
 gulp.task('scripts', function () {
   return gulp.src('src/**/*.coffee')
     .pipe(plumber())
-    .pipe(gulpif(!build, changed(dest)))
+    .pipe(gulpif(!build, changed('.tmp')))
     .pipe(gulpif(!build, sourcemaps.init()))
     .pipe(concat('scripts.min.js'))
     .pipe(coffee())
@@ -73,13 +74,14 @@ gulp.task('styles', function () {
 gulp.task('dom', function () {
   gulp.src('src/**/*.html')
     .pipe(plumber())
+    .pipe(gulpif(!build, changed(dest)))
     .pipe(rename({dirname: '/partials'}))
     .pipe(gulpif(build, cleanhtml()))
     .pipe(gulp.dest(dest))
 
   return gulp.src(['src/*.jade', 'src/**/*.jade'])
     .pipe(plumber())
-    .pipe(gulpif(!build, changed(dest)))
+    .pipe(gulpif(!build, changed('.tmp')))
     .pipe(jade({pretty: true}))
     .pipe(gulpif(build, cleanhtml()))
     .pipe(gulpif(function (file) {
@@ -88,8 +90,16 @@ gulp.task('dom', function () {
       }
     }, ngcache(), gulp.dest(dest)));
 });
+/* Bower scripts */
+gulp.task('bower', function () {
+  return gulp.src(bowerScriptFiles.minified.concat(bowerScriptFiles.minifiedNotFound))
+    .pipe(plumber())
+    .pipe(gulpif(!build, changed('.tmp')))
+    .pipe(concat('bower.js'))
+    .pipe(gulp.dest('.tmp'));
+});
 /* Merge scripts */
-gulp.task('merge-scripts', ['dom', 'scripts'], function () {
+gulp.task('merge-scripts', ['dom', 'scripts', 'bower'], function () {
   return gulp.src('.tmp/*.js')
     .pipe(plumber())
     .pipe(concat('scripts.min.js'))
