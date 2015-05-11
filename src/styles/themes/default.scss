@@ -7,3 +7,6 @@ $negative: #FF4136;
 $main-font: 'Source Sans Pro', sans-serif;
 
 @import '../app';
+
+// Import font
+@import url("//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700");
