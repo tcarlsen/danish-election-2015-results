@@ -1,4 +1,4 @@
-apiIp = "//10.86.233.44:8000"
+apiIp = "//10.86.233.41:8000"
 
 angular.module "ng-app", [
   "ngTouch"
