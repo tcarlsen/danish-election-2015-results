@@ -36,7 +36,7 @@ var banner = [
 
 var build = false;
 var dest = 'app';
-var bowerScriptFiles = bowerMain('js','min.js');
+var bowerScriptFiles = bowerMain('js', 'min.js');
 var ngcache = lazypipe()
   .pipe(rename, {dirname: '/'})
   .pipe(templatecache, {standalone: true})
@@ -77,7 +77,7 @@ gulp.task('dom', function () {
     .pipe(gulpif(!build, changed(dest)))
     .pipe(rename({dirname: '/partials'}))
     .pipe(gulpif(build, cleanhtml()))
-    .pipe(gulp.dest(dest))
+    .pipe(gulp.dest(dest));
 
   return gulp.src(['src/*.jade', 'src/**/*.jade'])
     .pipe(plumber())
@@ -86,7 +86,7 @@ gulp.task('dom', function () {
     .pipe(gulpif(build, cleanhtml()))
     .pipe(gulpif(function (file) {
       if (file.relative !== "index.html") {
-        return true
+        return true;
       }
     }, ngcache(), gulp.dest(dest)));
 });
