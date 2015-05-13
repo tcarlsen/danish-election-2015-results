@@ -5,7 +5,7 @@ div.tab-container
     li.tab-nav(ng-class="{'active': tab=='exit'}" ng-click="tab='exit'") Exit-poll
   .clearfix
   div.tab-body
-    svg.block-poll(block-poll)
+    div.block-poll(block-poll)
     ul.party-poll-header.mobile-hide
       li.party-header(ng-repeat="party in json.map.parties")
         i.partylogo.small(ng-class="party.party_letter")

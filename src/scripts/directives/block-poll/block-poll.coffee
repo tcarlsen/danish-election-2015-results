@@ -1,13 +1,16 @@
 .directive "blockPoll", ->
   restrict: "A"
   link: (scope, element, attrs) ->
+    svg = d3.select(element[0]).append "svg"
+        .attr "width", "100%"
+        .attr "height", "100%"
+
     scope.$watchCollection "json.map", (data) ->
       render(data) if data
 
     render = (data) ->
-      svg = d3.select element[0]
-      svgWidth = svg[0][0].offsetWidth
-      svgHeight = svg[0][0].offsetHeight
+      svgWidth = d3.select(element[0])[0][0].offsetWidth
+      svgHeight = d3.select(element[0])[0][0].offsetHeight
       xTotal = data.red_block.mandates + data.blue_block.mandates
       xScale = d3.scale.linear()
         .domain [0, xTotal]
