@@ -42,6 +42,6 @@ div.container.mobile-show
     tbody
       tr(ng-repeat="party in json.map.parties")
         td.party-logo #[i.partylogo.large(ng-class="party.party_letter")]
-        td.number {{party.votes}}
-        td.number {{party.votes_pct}}%
+        td.number {{party.votes | number}}
+        td.number {{party.votes_pct | number}}%
         td.number {{party.mandates}}

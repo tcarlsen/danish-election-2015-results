@@ -8,18 +8,21 @@
       .html (data) ->
         red = $filter('number')(data.red_block_votes_pct, 1)
         blue = $filter('number')(data.blue_block_votes_pct, 1)
+        counted = $filter('number')(data.votes_counted_pct, 1)
 
         html = "<h2 class=\"map-tip-header\">"
-        html+= "<div class=\"map-tip-counted\">Optalt: #{data.votes_counted_pct}%</div>"
+        html+= "<div class=\"map-tip-counted\">Optalt: #{counted}%</div>"
         html+= "#{data.name}</h2>"
         html+= "<table class=\"map-tip-table striped\">"
         html+= "<tbody>"
 
         for party in data.parties
+          percent = $filter('number')(party.votes_pct, 1)
+
           html+= "<tr>"
           html+= "<td><i class=\"partylogo #{party.party_letter}\"></i></td>"
           html+= "<td>#{party.party_name}</td>"
-          html+= "<td class=\"number\">#{party.votes_pct}%</td>"
+          html+= "<td class=\"number\">#{percent}%</td>"
           html+= "</tr>"
 
         html+= "</tbody>"
