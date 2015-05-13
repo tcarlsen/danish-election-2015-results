@@ -7,7 +7,7 @@
 .tab-nav {
   position: relative;
   cursor: pointer;
-  background-color: #ddd;
+  background-color: $dark-grey;
   float: left;
   min-width: 10em;
   padding: .3em 0.1em .3em 1.5em;
@@ -21,7 +21,7 @@
     content: "";
     border-top: 2em solid transparent;
     border-bottom: none;
-    border-left: 1.5em solid #ddd;
+    border-left: 1.5em solid $dark-grey;
     border-right: none;
     bottom: 0;
   }
