@@ -1,12 +1,10 @@
-.directive "blockPoll", ->
+.directive "blockPoll", ($window) ->
   restrict: "A"
   link: (scope, element, attrs) ->
+    firstRun = true;
     svg = d3.select(element[0]).append "svg"
         .attr "width", "100%"
         .attr "height", "100%"
-
-    scope.$watchCollection "json.map", (data) ->
-      render(data) if data
 
     render = (data) ->
       svgWidth = d3.select(element[0])[0][0].offsetWidth
@@ -93,3 +91,18 @@
         blueBlockLetters.attr "display", "none"
         redBlockValue.text (d) -> d
         blueBlockValue.text (d) -> d
+
+    $window.onresize = -> scope.$apply()
+
+    scope.$watch (->
+        angular.element($window)[0].innerWidth
+      ), ->
+        return if firstRun
+
+        svg.selectAll("*").remove()
+        render(scope.json.map)
+
+    scope.$watchCollection "json.map", (data) ->
+      if data
+        firstRun = false
+        render(data)
