@@ -54,9 +54,10 @@
           .on "mouseover", (d) ->
             d3.select(this).attr "class", "map selected"
 
-            targetRect = this.getBBox()
-            parentRect = element[0].getBoundingClientRect();
             tipDirection = ''
+            targetRect = this.getBBox()
+            parentRect = svg[0][0].getBBox();
+
             if targetRect.y > parentRect.height / 2
               tipDirection = 'n'
             else
