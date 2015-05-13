@@ -9,9 +9,8 @@ $blue: #136A90;
 $light-blue: lighten($blue, 20);
 $lighter-blue: lighten($blue, 40);
 
-body {
+[ng-app] {
   font-family: $main-font;
-  margin: 0;
 }
 
 .clearfix {
