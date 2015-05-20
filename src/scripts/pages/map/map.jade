@@ -4,12 +4,13 @@ div.tab-container
     li.tab-nav(ng-class="{'active': tab=='counter'}" ng-click="tab='counter'") Optalte stemmer - XX%
     li.tab-nav(ng-class="{'active': tab=='exit'}" ng-click="tab='exit'") Exit-poll
   .clearfix
-  div.tab-body
+  div.tab-body(ng-mouseover="showPct=true" ng-mouseout="showPct=false")
     div.block-poll(block-poll)
     ul.party-poll-header.mobile-hide
       li.party-header(ng-repeat="party in json.map.parties")
         i.partylogo.small(ng-class="party.party_letter")
-        p {{party.mandates}}
+        p(ng-hide="showPct") {{party.mandates}}
+        p(ng-show="showPct") {{party.votes_pct | number}}%
     .clearfix
   div.election-map.mobile-hide(election-map)
   div.help-box.mobile-hide
