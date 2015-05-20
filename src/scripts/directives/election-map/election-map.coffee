@@ -29,7 +29,7 @@
         html+= "</table>"
         html+= "<div class=\"map-tip-block\">"
         html+= "<div class=\"map-tip-red\">#{red}%</div>"
-        html+= "<div class=\"map-tip-blue\" style=\"width:#{blue}%\">#{blue}%</div>"
+        html+= "<div class=\"map-tip-blue\" style=\"width:#{data.blue_block_votes_pct}%\">#{blue}%</div>"
         html+= "</div>"
 
         return html
