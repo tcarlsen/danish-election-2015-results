@@ -23,7 +23,7 @@ div.table-container
       td(ng-if="json.table.areatype == 'K'") Optalte valgsteder
       td(ng-if="json.table.areatype == 'D'")
       td(ng-if="json.table.areatype == 'D'")
-      td(ng-if="json.table.areatype != 'D'") XX af XX
+      td(ng-if="json.table.areatype != 'D'") {{json.table.locations_completed}} af {{json.table.locations_completed}}
       td Optalte stemmer:
       td.number {{json.table.votes_made | number}}
   table.party-table.striped
