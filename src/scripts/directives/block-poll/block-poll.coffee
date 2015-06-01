@@ -91,8 +91,8 @@
       if svgWidth <= 780
         redBlockLetters.attr "display", "none"
         blueBlockLetters.attr "display", "none"
-        redBlockValue.text (d) -> d
-        blueBlockValue.text (d) -> d
+        redBlockValue.text (d) -> d.mandates
+        blueBlockValue.text (d) -> d.mandates
 
     $window.onresize = -> scope.$apply()
 
