@@ -17,15 +17,23 @@
     display: none;
   }
 
+  .map-tip {
+    display: none;
+  }
+
   th {
     padding: 0.5em 0.7em;
   }
 
   .tab-nav {
-    width: 100%;
+    width: calc(100% - 1.6em);
     height: 30px;
     line-height: 30px;
     border: 1px solid $white;
+
+    &:after {
+      display: none;
+    }
   }
 
   h1.header {
