@@ -33,9 +33,15 @@ div.table-container
         th.mobile-show Parti
         th.number Stemmetal
         th.number Procenter
-        th.number.mobile-hide Procenter +/- #[i.ion-information-circled]
+        th.number.mobile-hide 
+          | Procenter +/-
+          i.ion-information-circled.info-popup-container(ng-mouseover="infoPct = true" ng-mouseout="infoPct = false")
+            span.info-popup(ng-show="infoPct") Tallet viser, hvor mange procentpoint partiet er gået frem eller tilbage i forhold til folketingsvalget 2011.
         th.number(ng-if="json.table.areatype != 'K' && json.table.areatype != 'D'") Mandater
-        th.number.mobile-hide(ng-if="json.table.areatype != 'K' && json.table.areatype != 'D'") Mandater +/- #[i.ion-information-circled]
+        th.number.mobile-hide(ng-if="json.table.areatype != 'K' && json.table.areatype != 'D'") 
+          | Mandater +/- 
+          i.ion-information-circled.info-popup-container(ng-mouseover="infoMan = true" ng-mouseout="infoMan = false")
+            span.info-popup(ng-show="infoMan") Tallet viser, hvor mange mandater partiet er gået frem eller tilbage i forhold til folketingsvalget 2011.
     tbody
       tr(ng-repeat="party in json.table.results")
         td.party-logo
