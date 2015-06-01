@@ -1,7 +1,9 @@
-.directive "blockPoll", ($window) ->
+.directive "blockPoll", ($window, $filter) ->
   restrict: "A"
   link: (scope, element, attrs) ->
     firstRun = true;
+    redBlockValue = null
+    blueBlockValue = null
     svg = d3.select(element[0]).append "svg"
         .attr "width", "100%"
         .attr "height", "100%"
@@ -28,7 +30,7 @@
         .transition().duration(1000)
           .attr "width", (d) -> xScale d
 
-      redBlockValue = svg.selectAll(".red block-value").data([data.red_block.mandates])
+      redBlockValue = svg.selectAll(".red block-value").data([data.red_block])
         .enter()
           .append "text"
             .attr "class", "red block-value"
@@ -37,7 +39,7 @@
             .attr "text-anchor", "start"
 
       redBlockValue
-        .text (d) -> "#{d} mandater"
+        .text (d) -> "#{d.mandates} mandater"
 
       redBlockLetters = svg.selectAll(".red block-letters").data([data.red_block])
         .enter()
@@ -64,7 +66,7 @@
           .attr "x", (d) -> svgWidth - xScale d
           .attr "width", (d) -> xScale d
 
-      blueBlockValue = svg.selectAll(".blue block-value").data([data.blue_block.mandates])
+      blueBlockValue = svg.selectAll(".blue block-value").data([data.blue_block])
         .enter()
           .append "text"
             .attr "class", "blue block-value"
@@ -73,7 +75,7 @@
             .attr "text-anchor", "end"
 
       blueBlockValue
-        .text (d) -> "#{d} mandater"
+        .text (d) -> "#{d.mandates} mandater"
 
       blueBlockLetters = svg.selectAll(".blue block-letters").data([data.blue_block])
         .enter()
@@ -106,3 +108,11 @@
       if data
         firstRun = false
         render(data)
+
+    scope.$watch "showPct", (data) ->
+      if data is true
+        redBlockValue.text (d) -> "#{$filter('number')(d.votes_pct)}%"
+        blueBlockValue.text (d) -> "#{$filter('number')(d.votes_pct)}%"
+      else if data is false
+        redBlockValue.text (d) -> "#{d.mandates} mandater"
+        blueBlockValue.text (d) -> "#{d.mandates} mandater"
