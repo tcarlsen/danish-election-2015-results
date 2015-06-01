@@ -30,7 +30,7 @@ div.tab-container
     li.updated-region(ng-repeat="latest in json.map.latest_votes_counted_complete") {{latest.name}} #[div.stripe(ng-class="latest.block_winner")]
   .clearfix
   p.help-text.mobile-hide Klik på kortet for at se kredsresultater, eller klik #[a(ng-href="#/resultater/landet") her] for at gå direkte til landsresultatet
-div.container.mobile-show
+div.mobile-container.mobile-show
   table.party-table.striped
     thead
       tr
