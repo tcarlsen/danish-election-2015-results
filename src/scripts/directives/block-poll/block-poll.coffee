@@ -4,6 +4,7 @@
     firstRun = true;
     redBlockValue = null
     blueBlockValue = null
+    svgWidth = null
     svg = d3.select(element[0]).append "svg"
         .attr "width", "100%"
         .attr "height", "100%"
@@ -114,5 +115,10 @@
         redBlockValue.text (d) -> "#{$filter('number')(d.votes_pct)}%"
         blueBlockValue.text (d) -> "#{$filter('number')(d.votes_pct)}%"
       else if data is false
-        redBlockValue.text (d) -> "#{d.mandates} mandater"
-        blueBlockValue.text (d) -> "#{d.mandates} mandater"
+        if svgWidth > 780
+          extention = "mandater"
+        else
+          extention = ""
+
+        redBlockValue.text (d) -> "#{d.mandates} #{extention}"
+        blueBlockValue.text (d) -> "#{d.mandates} #{extention}"
