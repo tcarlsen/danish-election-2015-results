@@ -26,8 +26,9 @@
   }
 
   .tab-nav {
-    width: calc(100% - 1.6em);
-    height: 30px;
+    width: 100%;
+    margin: 0;
+    box-sizing: border-box;;
     line-height: 30px;
     border: 1px solid $white;
 
