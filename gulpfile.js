@@ -75,7 +75,7 @@ gulp.task('dom', function () {
   gulp.src('src/**/*.html')
     .pipe(plumber())
     .pipe(gulpif(!build, changed(dest)))
-    .pipe(rename({dirname: '/partials'}))
+    .pipe(gulpif(build, rename({dirname: '/'}), rename({dirname: '/upload/tcarlsen/danish-election-2015-results'})))
     .pipe(gulpif(build, cleanhtml()))
     .pipe(gulp.dest(dest));
 

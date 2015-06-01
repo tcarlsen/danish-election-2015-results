@@ -1,6 +1,6 @@
 .directive "electionMap", ($filter, $location, $rootScope) ->
   restrict: "A"
-  templateUrl: "partials/election-map.html"
+  templateUrl: "/upload/tcarlsen/danish-election-2015-results/election-map.html"
   link: (scope, element, attrs) ->
     svg = d3.select "#dk_valgkredse"
     tip = d3.tip()
