@@ -1,6 +1,6 @@
 {
   "name": "danish-election-2015-results",
-  "version": "1.0.0-rc7",
+  "version": "1.0.0-rc8",
   "description": "a politiko.dk application to show the results of the danish election 2015",
   "author": "tcarlsen",
   "devDependencies": {
