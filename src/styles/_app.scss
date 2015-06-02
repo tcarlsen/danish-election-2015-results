@@ -62,13 +62,14 @@ td,th {
   padding: .7em;
 }
 
-th {
+thead th {
   background-color: $secondary;
   color: $white;
   font-weight: normal;
   border-spacing: 0;
   text-align: left;
   padding: .7em;
+  border-bottom: none;
   &:first-child {
     text-align: left;
     padding-left: 15px;
