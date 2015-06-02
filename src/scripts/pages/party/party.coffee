@@ -6,6 +6,13 @@
 
   $scope.json = $scope.json or {}
 
+  $scope.changeOrder = (order) ->
+    if $scope.order is order
+      $scope.reverse =! $scope.reverse
+    else
+      $scope.order = order
+      $scope.reverse = false
+
   $http.get "#{apiIp}/#{apiUrl}"
     .success (data) ->
       $scope.json.party = data

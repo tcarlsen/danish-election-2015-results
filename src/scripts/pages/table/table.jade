@@ -29,21 +29,31 @@ div.table-container
   table.party-table.striped
     thead
       tr
-        th.mobile-hide(colspan="2") Parti
-        th.mobile-show Parti
-        th.number Stemmetal
-        th.number Procenter
+        th.mobile-hide(colspan="2" ng-click="changeOrder('party_name')") 
+          | Parti&nbsp;
+          i(ng-class="{'ion-android-arrow-dropup': order=='party_name' && reverse==false, 'ion-android-arrow-dropdown': order=='party_name' && reverse==true}")
+        th.mobile-show(ng-click="changeOrder('party_name')") 
+          | Parti
+          i(ng-class="{'ion-android-arrow-dropup': order=='party_name' && reverse==false, 'ion-android-arrow-dropdown': order=='party_name' && reverse==true}")
+        th.number(ng-click="changeOrder('-votes')") 
+          | Stemmetal&nbsp;
+          i(ng-class="{'ion-android-arrow-dropup': order=='-votes' && reverse==true, 'ion-android-arrow-dropdown': order=='-votes' && reverse==false}")
+        th.number(ng-click="changeOrder('-votes_pct')") 
+          | Procenter&nbsp;
+          i(ng-class="{'ion-android-arrow-dropup': order=='-votes_pct' && reverse==true, 'ion-android-arrow-dropdown': order=='-votes_pct' && reverse==false}")
         th.number.mobile-hide 
           | Procenter +/-
           i.ion-information-circled.info-popup-container(ng-mouseover="infoPct = true" ng-mouseout="infoPct = false")
             span.info-popup(ng-show="infoPct") Tallet viser, hvor mange procentpoint partiet er gået frem eller tilbage i forhold til folketingsvalget 2011.
-        th.number(ng-if="json.table.areatype != 'K' && json.table.areatype != 'D'") Mandater
+        th.number(ng-if="json.table.areatype != 'K' && json.table.areatype != 'D'" ng-click="changeOrder('-mandates')") 
+          | Mandater&nbsp;
+          i(ng-class="{'ion-android-arrow-dropup': order=='-mandates' && reverse==true, 'ion-android-arrow-dropdown': order=='-mandates' && reverse==false}")
         th.number.mobile-hide(ng-if="json.table.areatype != 'K' && json.table.areatype != 'D'") 
           | Mandater +/- 
           i.ion-information-circled.info-popup-container(ng-mouseover="infoMan = true" ng-mouseout="infoMan = false")
             span.info-popup(ng-show="infoMan") Tallet viser, hvor mange mandater partiet er gået frem eller tilbage i forhold til folketingsvalget 2011.
     tbody
-      tr(ng-repeat="party in json.table.results")
+      tr(ng-repeat="party in json.table.results | orderBy:order:reverse")
         td.party-logo
           a(ng-href="#/resultater{{party.path}}") #[i.partylogo.large(ng-class="party.party_letter")]
         td.mobile-hide
