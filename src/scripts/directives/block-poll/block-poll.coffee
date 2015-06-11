@@ -17,7 +17,7 @@
       xTotal = data.red_block.mandates + data.blue_block.mandates
       xScale = d3.scale.linear()
         .domain [0, xTotal]
-        .range [svgWidth, 0]
+        .range [0, svgWidth]
 
 
       redBlockRect = svg.selectAll(".red block-rect").data([data.red_block.mandates])
