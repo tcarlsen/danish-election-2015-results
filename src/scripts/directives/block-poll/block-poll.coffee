@@ -10,6 +10,8 @@
         .attr "height", "100%"
 
     render = (data) ->
+      return if data.blue_block.mandates is null or data.red_block.mandates is null
+
       svgWidth = d3.select(element[0])[0][0].offsetWidth
       svgHeight = d3.select(element[0])[0][0].offsetHeight
       xTotal = data.red_block.mandates + data.blue_block.mandates
