@@ -25,7 +25,7 @@ div.tab-container
       div.block.lighter-red
       div.block.lighter-blue
       p.block-text få valgsteder i kredsen optalt
-  ul.latest-updates.mobile-hide
+  ul.latest-updates.mobile-hide(ng-hide="json.map.latest_votes_counted_complete.length == 0")
     li.updated-text Seneste optalte:
     li.updated-region(ng-repeat="latest in json.map.latest_votes_counted_complete")
       a(ng-href="#/resultater{{latest.path}}") {{latest.name}} #[div.stripe(ng-class="latest.block_winner")]
