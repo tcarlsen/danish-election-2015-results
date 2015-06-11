@@ -39,10 +39,12 @@
         return "red" if pct >= 99.9
         return "light-red" if pct >= 50
         return "lighter-red"
-      else
+      else if block is "blue"
         return "blue" if pct >= 99.9
         return "light-blue" if pct >= 50
         return "lighter-blue"
+      else
+        return "neutral"
 
     render = (data) ->
       for constituency in data
