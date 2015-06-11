@@ -58,12 +58,13 @@
         .enter()
           .append "text"
             .attr "class", "red block-letters"
-            .attr "x", (d) -> xScale(d.mandates) - 10
             .attr "y", 38
             .attr "text-anchor", "end"
 
       redBlockLetters
         .text (d) -> d.party_letters
+        .transition().duration(1000)
+          .attr "x", (d) -> xScale(d.mandates) - 10
 
       blueBlockRect = svg.selectAll(".blue.block-rect").data([data.blue_block])
 
@@ -108,12 +109,13 @@
         .enter()
           .append "text"
             .attr "class", "blue block-letters"
-            .attr "x", (d) -> svgWidth - xScale(d.mandates) + 10
             .attr "y", 38
             .attr "text-anchor", "start"
 
       blueBlockLetters
         .text (d) -> d.party_letters
+        .transition().duration(1000)
+          .attr "x", (d) -> svgWidth - xScale(d.mandates) + 10
 
       if svgWidth <= 780
         redBlockLetters.attr "display", "none"
