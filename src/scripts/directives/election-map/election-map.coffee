@@ -13,24 +13,28 @@
         html = "<h2 class=\"map-tip-header\">"
         html+= "<div class=\"map-tip-counted\">Optalt: #{counted}%</div>"
         html+= "#{data.name}</h2>"
-        html+= "<table class=\"map-tip-table striped\">"
-        html+= "<tbody>"
 
-        for party in data.parties
-          percent = $filter('number')(party.votes_pct, 1)
+        if data.parties.length isnt 0
+          html+= "<table class=\"map-tip-table striped\">"
+          html+= "<tbody>"
 
-          html+= "<tr>"
-          html+= "<td><i class=\"partylogo #{party.party_letter}\"></i></td>"
-          html+= "<td>#{party.party_name}</td>"
-          html+= "<td class=\"number\">#{percent}%</td>"
-          html+= "</tr>"
+          for party in data.parties
+            percent = $filter('number')(party.votes_pct, 1)
 
-        html+= "</tbody>"
-        html+= "</table>"
-        html+= "<div class=\"map-tip-block\">"
-        html+= "<div class=\"map-tip-red\">#{red}%</div>"
-        html+= "<div class=\"map-tip-blue\" style=\"width:#{data.blue_block_votes_pct}%\">#{blue}%</div>"
-        html+= "</div>"
+            html+= "<tr>"
+            html+= "<td><i class=\"partylogo #{party.party_letter}\"></i></td>"
+            html+= "<td>#{party.party_name}</td>"
+            html+= "<td class=\"number\">#{percent}%</td>"
+            html+= "</tr>"
+
+          html+= "</tbody>"
+          html+= "</table>"
+
+        if data.blue_block_votes_pct isnt 0
+          html+= "<div class=\"map-tip-block\">"
+          html+= "<div class=\"map-tip-red\">#{red}%</div>"
+          html+= "<div class=\"map-tip-blue\" style=\"width:#{data.blue_block_votes_pct}%\">#{blue}%</div>"
+          html+= "</div>"
 
         return html
 
