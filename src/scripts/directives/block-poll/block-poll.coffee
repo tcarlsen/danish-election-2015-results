@@ -19,8 +19,9 @@
         .domain [0, xTotal]
         .range [0, svgWidth]
 
+      redBlockRect = svg.selectAll(".red.block-rect").data([data.red_block])
 
-      redBlockRect = svg.selectAll(".red block-rect").data([data.red_block.mandates])
+      redBlockRect
         .enter()
           .append "rect"
             .attr "class", "red block-rect"
@@ -32,8 +33,9 @@
       redBlockRect
         .transition().duration(1000)
           .attr "width", (d) -> xScale d
+      redBlockValue = svg.selectAll(".red.block-value").data([data.red_block])
 
-      redBlockValue = svg.selectAll(".red block-value").data([data.red_block])
+      redBlockValue
         .enter()
           .append "text"
             .attr "class", "red block-value"
@@ -44,7 +46,9 @@
       redBlockValue
         .text (d) -> "#{d.mandates} mandater"
 
-      redBlockLetters = svg.selectAll(".red block-letters").data([data.red_block])
+      redBlockLetters = svg.selectAll(".red.block-letters").data([data.red_block])
+
+      redBlockLetters
         .enter()
           .append "text"
             .attr "class", "red block-letters"
@@ -55,7 +59,9 @@
       redBlockLetters
         .text (d) -> d.party_letters
 
-      blueBlockRect = svg.selectAll(".blue block-rect").data([data.blue_block.mandates])
+      blueBlockRect = svg.selectAll(".blue.block-rect").data([data.blue_block])
+
+      blueBlockRect
         .enter()
           .append "rect"
             .attr "class", "blue block-rect"
@@ -68,8 +74,9 @@
         .transition().duration(1000)
           .attr "x", (d) -> svgWidth - xScale d
           .attr "width", (d) -> xScale d
+      blueBlockValue = svg.selectAll(".blue.block-value").data([data.blue_block])
 
-      blueBlockValue = svg.selectAll(".blue block-value").data([data.blue_block])
+      blueBlockValue
         .enter()
           .append "text"
             .attr "class", "blue block-value"
@@ -80,7 +87,9 @@
       blueBlockValue
         .text (d) -> "#{d.mandates} mandater"
 
-      blueBlockLetters = svg.selectAll(".blue block-letters").data([data.blue_block])
+      blueBlockLetters = svg.selectAll(".blue.block-letters").data([data.blue_block])
+
+      blueBlockLetters
         .enter()
           .append "text"
             .attr "class", "blue block-letters"
