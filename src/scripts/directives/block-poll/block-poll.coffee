@@ -15,6 +15,7 @@
       svgWidth = d3.select(element[0])[0][0].offsetWidth
       svgHeight = d3.select(element[0])[0][0].offsetHeight
       xTotal = data.red_block.mandates + data.blue_block.mandates
+      xTotal = 2 if xTotal is 0
       xScale = d3.scale.linear()
         .domain [0, xTotal]
         .range [0, svgWidth]
@@ -32,7 +33,12 @@
 
       redBlockRect
         .transition().duration(1000)
-          .attr "width", (d) -> xScale d
+          .attr "width", (d) ->
+            if d.mandates is 0 and xTotal is 2
+              xScale 1
+            else
+              xScale d.mandates
+
       redBlockValue = svg.selectAll(".red.block-value").data([data.red_block])
 
       redBlockValue
@@ -72,8 +78,17 @@
 
       blueBlockRect
         .transition().duration(1000)
-          .attr "x", (d) -> svgWidth - xScale d
-          .attr "width", (d) -> xScale d
+          .attr "x", (d) ->
+            if d.mandates is 0 and xTotal is 2
+              svgWidth - xScale 1
+            else
+              svgWidth - xScale d.mandates
+          .attr "width", (d) ->
+            if d.mandates is 0 and xTotal is 2
+              xScale 1
+            else
+              xScale d.mandates
+
       blueBlockValue = svg.selectAll(".blue.block-value").data([data.blue_block])
 
       blueBlockValue
