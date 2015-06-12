@@ -133,10 +133,10 @@
         svg.selectAll("*").remove()
         render(scope.json.map)
 
-    scope.$watchCollection "json.map", (data) ->
+    scope.$watchCollection "json.map.blue_block", (data) ->
       if data
         firstRun = false
-        render(data)
+        render(scope.json.map)
 
     scope.$watch "showPct", (data) ->
       if data is true

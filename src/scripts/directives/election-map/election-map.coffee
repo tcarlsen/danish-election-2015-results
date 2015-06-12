@@ -87,5 +87,5 @@
 
     svg.call tip
 
-    scope.$watchCollection "json.map", (data) ->
-      render(data.constituencies) if data
+    scope.$watchCollection "json.map.constituencies", (data) ->
+      render(data) if data
