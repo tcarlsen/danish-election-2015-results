@@ -43,4 +43,4 @@
 
   socket.on "latest_votes_counted_complete", (message) ->
     $scope.$apply ->
-      $scope.json.map.latest_votes_counted_complete.push(message.result)
+      $scope.json.map.latest_votes_counted_complete.unshift(message.result)
