@@ -1,6 +1,6 @@
 div.tab-container
   ul.tab-header
-    li.tab-nav(ng-class="{'active': tab=='2011'}" ng-click="tab='2011'") Resultat 2015 - optalte {{json.map.votes_counted_pct | number}}%
+    li.tab-nav.active(ng-click="tab='2011'") Resultat 2015 - optalte {{json.map.votes_counted_pct | number}}%
   .clearfix
   div.tab-body(ng-click="toggleShowPct()" ng-if="detectmobile()")
     div.block-poll(block-poll)

@@ -1,7 +1,6 @@
 .controller "MapController", ($scope, $http, $timeout) ->
   doubleClickCheck = false
 
-  $scope.tab = "2011"
   $scope.json = $scope.json or {}
 
   $scope.detectmobile = ->
