@@ -1,6 +1,23 @@
-.controller "MapController", ($scope, $http) ->
+.controller "MapController", ($scope, $http, $timeout) ->
+  doubleClickCheck = false
+
   $scope.tab = "2011"
   $scope.json = $scope.json or {}
+
+  $scope.detectmobile = ->
+    if navigator.userAgent.match(/Android/i) or navigator.userAgent.match(/webOS/i) or navigator.userAgent.match(/iPhone/i) or navigator.userAgent.match(/iPad/i) or navigator.userAgent.match(/iPod/i) or navigator.userAgent.match(/BlackBerry/i) or navigator.userAgent.match(/Windows Phone/i)
+      true
+    else
+      false
+
+  $scope.toggleShowPct = ->
+    if !doubleClickCheck
+      doubleClickCheck = true
+      $scope.showPct = !$scope.showPct
+
+      $timeout ->
+        doubleClickCheck = false
+      , 500
 
   $http.get "#{apiIp}/map"
     .success (data) ->

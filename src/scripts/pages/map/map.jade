@@ -2,7 +2,9 @@ div.tab-container
   ul.tab-header
     li.tab-nav(ng-class="{'active': tab=='2011'}" ng-click="tab='2011'") Resultat 2015 - optalte {{json.map.votes_counted_pct | number}}%
   .clearfix
-  div.tab-body(ng-mouseover="showPct=true" ng-mouseout="showPct=false")
+  div.tab-body(ng-click="toggleShowPct()" ng-if="detectmobile()")
+    div.block-poll(block-poll)
+  div.tab-body(ng-mouseover="showPct=true" ng-mouseout="showPct=false" ng-if="!detectmobile()")
     div.block-poll(block-poll)
     ul.party-poll-header.mobile-hide
       li.party-header(ng-repeat="party in json.map.parties")
