@@ -85,7 +85,17 @@
             scope.$apply ->
               $location.path "resultater#{d.path}"
 
+    update = (data) ->
+      mapId = data.ident.replace "K", "op-kreds-"
+
+      svg.select "##{mapId}"
+        .data [data]
+        .attr "class", (d) -> "map #{classes(d.block_winner, d.votes_counted_pct)}"
+
     svg.call tip
 
     scope.$watchCollection "json.map.constituencies", (data) ->
       render(data) if data
+
+    scope.$watch "json.map.newConstituency", (data) ->
+      update(data) if data

@@ -37,6 +37,10 @@
     $scope.$apply ->
       $scope.json.map.parties = message.result
 
+  socket.on "constituency", (message) ->
+    $scope.$apply ->
+      $scope.json.map.newConstituency = message.result
+
   socket.on "latest_votes_counted_complete", (message) ->
     $scope.$apply ->
       $scope.json.map.latest_votes_counted_complete.push(message.result)

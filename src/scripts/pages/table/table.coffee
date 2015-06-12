@@ -16,3 +16,8 @@
       $scope.json.table = data
     .error (data, status, headers, config) ->
       return
+
+  socket.on "location", (message) ->
+    if message.result.ident is $routeParams.id
+      $scope.$apply ->
+        $scope.json.table = message.result

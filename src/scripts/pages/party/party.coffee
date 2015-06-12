@@ -18,3 +18,8 @@
       $scope.json.party = data
     .error (data, status, headers, config) ->
       return
+
+  socket.on "party", (message) ->
+    if message.result.ident is $routeParams.id and message.result.party_letter is $routeParams.party
+      $scope.$apply ->
+        $scope.json.party = message.result
