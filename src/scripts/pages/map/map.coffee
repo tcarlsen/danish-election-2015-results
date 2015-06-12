@@ -28,7 +28,7 @@
     $scope.$apply ->
       $scope.json.map.votes_counted_pct = message.result
 
-  socket.on "block", (message) ->
+  socket.on "blocks", (message) ->
     $scope.$apply ->
       $scope.json.map.blue_block = message.result.blue_block
       $scope.json.map.red_block = message.result.red_block
