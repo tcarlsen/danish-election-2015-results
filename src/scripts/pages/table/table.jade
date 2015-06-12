@@ -53,6 +53,13 @@ div.table-container
           i.ion-information-circled.info-popup-container(ng-mouseover="infoMan = true" ng-mouseout="infoMan = false")
             span.info-popup(ng-show="infoMan") Tallet viser, hvor mange mandater partiet er gået frem eller tilbage i forhold til folketingsvalget 2011.
     tbody
+      tr
+        td(colspan="7" ng-if="json.table.results.length == 0") 
+          | Afventer optælling fra&nbsp;
+          span(ng-if="json.table.areatype == 'L'") landet.
+          span(ng-if="json.table.areatype == 'S'") storkredsen.
+          span(ng-if="json.table.areatype == 'K'") kredsen.
+          span(ng-if="json.table.areatype == 'D'") valgstedet.
       tr(ng-repeat="party in json.table.results | orderBy:order:reverse")
         td.party-logo
           a(ng-href="#/resultater{{party.path}}") #[i.partylogo.large(ng-class="party.party_letter")]

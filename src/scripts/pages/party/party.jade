@@ -23,6 +23,8 @@ div.table-container
           | Personlige stemmer&nbsp;
           i(ng-class="{'ion-android-arrow-dropup': order=='-votes' && reverse==true, 'ion-android-arrow-dropdown': order=='-votes' && reverse==false}")
     tbody
+      tr
+        td(colspan="2" ng-if="json.party.results.length == 0") Afventer optælling af de personlige stemmer.
       tr(ng-repeat="candidate in json.party.results | orderBy:order:reverse")
         td {{candidate.name}}
         td.number {{candidate.votes | number}}

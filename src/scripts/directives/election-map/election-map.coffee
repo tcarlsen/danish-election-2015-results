@@ -14,7 +14,9 @@
         html+= "<div class=\"map-tip-counted\">Optalt: #{counted}%</div>"
         html+= "#{data.name}</h2>"
 
-        if data.parties.length isnt 0
+        if data.parties.length is 0
+          html+= "<p>Afventer optælling fra kredsen.</p>"
+        else
           html+= "<table class=\"map-tip-table striped\">"
           html+= "<tbody>"
 
