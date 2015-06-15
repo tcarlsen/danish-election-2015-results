@@ -1,5 +1,15 @@
+.map {
+  transition: fill 800ms linear;
+}
+
+.map.updated {
+  fill: $grey;
+  transition: fill 0ms linear;
+}
+
 .map.selected {
   fill: #707070;
+  transition: fill 200ms linear;
 }
 
 .map.neutral {

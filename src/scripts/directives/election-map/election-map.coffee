@@ -87,10 +87,13 @@
 
     update = (data) ->
       mapId = data.ident.replace "K", "op-kreds-"
+      ele = d3.select "##{mapId}"
 
-      svg.select "##{mapId}"
+      ele
         .data [data]
-        .attr "class", (d) -> "map #{classes(d.block_winner, d.votes_counted_pct)}"
+        .attr "class", "map updated"
+        .transition(2000).delay(200)
+          .attr "class", (d) -> "map #{classes(d.block_winner, d.votes_counted_pct)}"
 
     svg.call tip
 
