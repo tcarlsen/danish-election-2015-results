@@ -18,9 +18,9 @@ div.table-container
       td Stemmeprocent:
       td.number {{json.table.votes_pct | number}}%
     tr
-      td(ng-if="json.table.areatype == 'L'") Optalte storkredse
-      td(ng-if="json.table.areatype == 'S'") Optalte kredse
-      td(ng-if="json.table.areatype == 'K'") Optalte valgsteder
+      td(ng-if="json.table.areatype == 'L'") Optalte storkredse:
+      td(ng-if="json.table.areatype == 'S'") Optalte kredse:
+      td(ng-if="json.table.areatype == 'K'") Optalte valgsteder:
       td.mobile-hide(ng-if="json.table.areatype == 'D'")
       td.mobile-hide(ng-if="json.table.areatype == 'D'")
       td(ng-if="json.table.areatype != 'D'") {{json.table.locations_completed}} af {{json.table.locations_total}}
