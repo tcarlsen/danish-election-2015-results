@@ -17,7 +17,7 @@
     .success (data) ->
       $scope.json.party = data
     .error (data, status, headers, config) ->
-      return
+      alert "Der var et problem med at skabe kontakt til vores server, prøv igen senere."
 
   socket.removeAllListeners()
 
