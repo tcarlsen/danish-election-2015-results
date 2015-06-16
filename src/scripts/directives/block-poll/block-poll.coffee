@@ -120,8 +120,8 @@
       if svgWidth <= 780
         redBlockLetters.attr "display", "none"
         blueBlockLetters.attr "display", "none"
-        redBlockValue.text (d) -> d.votes_pct
-        blueBlockValue.text (d) -> d.votes_pct
+        redBlockValue.text (d) -> "#{$filter('number')(d.votes_pct)}%"
+        blueBlockValue.text (d) -> "#{$filter('number')(d.votes_pct)}%"
 
     $window.onresize = -> scope.$apply()
 
