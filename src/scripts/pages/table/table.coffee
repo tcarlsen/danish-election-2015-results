@@ -18,6 +18,10 @@
       return
 
   socket.on "location", (message) ->
-    if message.result.ident is $routeParams.id
+    thisIdent = $routeParams.id
+    thisIdent = "L1" if $routeParams.path is "landet"
+
+    if message.result.ident is thisIdent
+      console.log message.result
       $scope.$apply ->
         $scope.json.table = message.result
