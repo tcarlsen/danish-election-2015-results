@@ -17,6 +17,8 @@
     .error (data, status, headers, config) ->
       return
 
+  socket.removeAllListeners()
+
   socket.on "location", (message) ->
     thisIdent = $routeParams.id
     thisIdent = "L1" if $routeParams.path is "landet"

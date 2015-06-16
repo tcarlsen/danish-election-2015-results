@@ -26,6 +26,8 @@
     .error (data, status, headers, config) ->
       return
 
+  socket.removeAllListeners()
+
   socket.on "votes_counted_pct", (message) ->
     $scope.$apply ->
       $scope.json.map.votes_counted_pct = message.result.votes_counted_pct
