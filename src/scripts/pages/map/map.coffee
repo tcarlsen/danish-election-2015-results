@@ -1,5 +1,6 @@
 .controller "MapController", ($scope, $http, $timeout) ->
   doubleClickCheck = false
+  enableMouseover = false
 
   $scope.json = $scope.json or {}
   $scope.json.map = {}
@@ -10,8 +11,12 @@
     else
       false
 
-  $scope.toggleshowMan = ->
-    if !doubleClickCheck
+  $scope.toggleshowMan = (value) ->
+    return if enableMouseover is false
+
+    if value is true or value is false
+      $scope.showMan = value
+    else if !doubleClickCheck
       doubleClickCheck = true
       $scope.showMan = !$scope.showMan
 
@@ -22,6 +27,10 @@
   $http.get "#{apiIp}/map"
     .success (data) ->
       $scope.json.map = data
+
+      if data.votes_counted_pct is 100
+        $scope.showMan = true
+        enableMouseover = true
     .error (data, status, headers, config) ->
       return
 
@@ -30,6 +39,13 @@
   socket.on "votes_counted_pct", (message) ->
     $scope.$apply ->
       $scope.json.map.votes_counted_pct = message.result.votes_counted_pct
+
+      if message.result.votes_counted_pct is 100
+        $scope.showMan = true
+        enableMouseover = true
+      else
+        $scope.showMan = false
+        enableMouseover = false
 
   socket.on "blocks", (message) ->
     $scope.$apply ->
