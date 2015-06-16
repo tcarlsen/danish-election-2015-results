@@ -13,6 +13,15 @@ $lighter-blue: lighten($blue, 40);
   font-family: $main-font;
 }
 
+a {
+  color: $primary;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
 .clearfix {
   clear: both;
 }
