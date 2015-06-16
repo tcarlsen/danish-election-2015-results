@@ -61,9 +61,13 @@
   }
 }
 
+.map-container {
+  position: relative;
+}
+
 .help-box {
   position: absolute;
-  top: 170px;
+  top: 20px;
   font-size: 12px;
 }
 

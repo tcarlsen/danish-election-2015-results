@@ -12,21 +12,22 @@ div.tab-container
         p(ng-show="showMan") {{party.mandates}}
         p(ng-hide="showMan") {{party.votes_pct | number}}%
     .clearfix
-  div.election-map.mobile-hide(election-map)
-  div.help-box.mobile-hide
-    p Farven angiver hvilken blok der fører i kredsen:
-    div.color-block
-      div.block.red
-      div.block.blue
-      p.block-text Alle valgsteder i kredsen optalt
-    div.color-block
-      div.block.light-red
-      div.block.light-blue
-      p.block-text Flere valgsteder i kredsen optalt
-    div.color-block
-      div.block.lighter-red
-      div.block.lighter-blue
-      p.block-text Få valgsteder i kredsen optalt
+  div.map-container.mobile-hide
+    div.election-map(election-map)
+    div.help-box
+      p Farven angiver hvilken blok der fører i kredsen:
+      div.color-block
+        div.block.red
+        div.block.blue
+        p.block-text Alle valgsteder i kredsen optalt
+      div.color-block
+        div.block.light-red
+        div.block.light-blue
+        p.block-text Flere valgsteder i kredsen optalt
+      div.color-block
+        div.block.lighter-red
+        div.block.lighter-blue
+        p.block-text Få valgsteder i kredsen optalt
   ul.latest-updates.mobile-hide(ng-hide="json.map.latest_votes_counted_complete.length == 0")
     li.updated-text Seneste optalte:
     li.updated-region(ng-repeat="latest in json.map.latest_votes_counted_complete track by $index")
