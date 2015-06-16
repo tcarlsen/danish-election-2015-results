@@ -50,7 +50,7 @@
             .attr "text-anchor", "start"
 
       redBlockValue
-        .text (d) -> "#{d.votes_pct}%"
+        .text (d) -> "#{$filter('number')(d.votes_pct)}%"
 
       redBlockLetters = svg.selectAll(".red.block-letters").data([data.red_block])
 
@@ -101,7 +101,7 @@
             .attr "text-anchor", "end"
 
       blueBlockValue
-        .text (d) -> "#{d.votes_pct}%"
+        .text (d) -> "#{$filter('number')(d.votes_pct)}%"
 
       blueBlockLetters = svg.selectAll(".blue.block-letters").data([data.blue_block])
 
@@ -142,11 +142,11 @@
       if data is false
         redBlockValue.text (d) -> "#{$filter('number')(d.votes_pct)}%"
         blueBlockValue.text (d) -> "#{$filter('number')(d.votes_pct)}%"
-      else if data is false
+      else if data is true
         if svgWidth > 780
           extention = "mandater"
         else
           extention = ""
 
-        redBlockValue.text (d) -> "#{d.votes_pct} #{extention}"
-        blueBlockValue.text (d) -> "#{d.votes_pct} #{extention}"
+        redBlockValue.text (d) -> "#{d.mandates} #{extention}"
+        blueBlockValue.text (d) -> "#{d.mandates} #{extention}"
