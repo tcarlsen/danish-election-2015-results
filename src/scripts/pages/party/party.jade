@@ -10,9 +10,9 @@ div.table-container
     | {{json.party.party_name}}
   p Personlige stemmer i&nbsp;
     strong {{json.party.name}}
-    strong(ng-if="json.party.areatype == 'L'") &nbsp;(Storkreds)
-    strong(ng-if="json.party.areatype == 'S'") &nbsp;(Kreds)
-    strong(ng-if="json.party.areatype == 'K'") &nbsp;(Valgsted)
+    strong(ng-if="json.party.areatype == 'S'") &nbsp;(Storkreds)
+    strong(ng-if="json.party.areatype == 'K'") &nbsp;(Kreds)
+    strong(ng-if="json.party.areatype == 'D'") &nbsp;(Valgsted)
   table.candidate-table.striped
     thead
       tr
