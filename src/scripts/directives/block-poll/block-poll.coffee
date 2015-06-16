@@ -10,11 +10,11 @@
         .attr "height", "100%"
 
     render = (data) ->
-      return if data.blue_block.mandates is null or data.red_block.mandates is null
+      return if data.blue_block.votes_pct is null or data.red_block.votes_pct is null
 
       svgWidth = d3.select(element[0])[0][0].offsetWidth
       svgHeight = d3.select(element[0])[0][0].offsetHeight
-      xTotal = data.red_block.mandates + data.blue_block.mandates
+      xTotal = data.red_block.votes_pct + data.blue_block.votes_pct
       xTotal = 2 if xTotal is 0
       xScale = d3.scale.linear()
         .domain [0, xTotal]
@@ -34,10 +34,10 @@
       redBlockRect
         .transition().duration(1000)
           .attr "width", (d) ->
-            if d.mandates is 0 and xTotal is 2
+            if d.votes_pct is 0 and xTotal is 2
               xScale 1
             else
-              xScale d.mandates
+              xScale d.votes_pct
 
       redBlockValue = svg.selectAll(".red.block-value").data([data.red_block])
 
@@ -50,7 +50,7 @@
             .attr "text-anchor", "start"
 
       redBlockValue
-        .text (d) -> "#{d.mandates} mandater"
+        .text (d) -> "#{d.votes_pct}%"
 
       redBlockLetters = svg.selectAll(".red.block-letters").data([data.red_block])
 
@@ -64,7 +64,7 @@
       redBlockLetters
         .text (d) -> d.party_letters
         .transition().duration(1000)
-          .attr "x", (d) -> xScale(d.mandates) - 10
+          .attr "x", (d) -> xScale(d.votes_pct) - 10
 
       blueBlockRect = svg.selectAll(".blue.block-rect").data([data.blue_block])
 
@@ -80,15 +80,15 @@
       blueBlockRect
         .transition().duration(1000)
           .attr "x", (d) ->
-            if d.mandates is 0 and xTotal is 2
+            if d.votes_pct is 0 and xTotal is 2
               svgWidth - xScale 1
             else
-              svgWidth - xScale d.mandates
+              svgWidth - xScale d.votes_pct
           .attr "width", (d) ->
-            if d.mandates is 0 and xTotal is 2
+            if d.votes_pct is 0 and xTotal is 2
               xScale 1
             else
-              xScale d.mandates
+              xScale d.votes_pct
 
       blueBlockValue = svg.selectAll(".blue.block-value").data([data.blue_block])
 
@@ -101,7 +101,7 @@
             .attr "text-anchor", "end"
 
       blueBlockValue
-        .text (d) -> "#{d.mandates} mandater"
+        .text (d) -> "#{d.votes_pct}%"
 
       blueBlockLetters = svg.selectAll(".blue.block-letters").data([data.blue_block])
 
@@ -115,13 +115,13 @@
       blueBlockLetters
         .text (d) -> d.party_letters
         .transition().duration(1000)
-          .attr "x", (d) -> svgWidth - xScale(d.mandates) + 10
+          .attr "x", (d) -> svgWidth - xScale(d.votes_pct) + 10
 
       if svgWidth <= 780
         redBlockLetters.attr "display", "none"
         blueBlockLetters.attr "display", "none"
-        redBlockValue.text (d) -> d.mandates
-        blueBlockValue.text (d) -> d.mandates
+        redBlockValue.text (d) -> d.votes_pct
+        blueBlockValue.text (d) -> d.votes_pct
 
     $window.onresize = -> scope.$apply()
 
@@ -138,8 +138,8 @@
         firstRun = false
         render(scope.json.map)
 
-    scope.$watch "showPct", (data) ->
-      if data is true
+    scope.$watch "showMan", (data) ->
+      if data is false
         redBlockValue.text (d) -> "#{$filter('number')(d.votes_pct)}%"
         blueBlockValue.text (d) -> "#{$filter('number')(d.votes_pct)}%"
       else if data is false
@@ -148,5 +148,5 @@
         else
           extention = ""
 
-        redBlockValue.text (d) -> "#{d.mandates} #{extention}"
-        blueBlockValue.text (d) -> "#{d.mandates} #{extention}"
+        redBlockValue.text (d) -> "#{d.votes_pct} #{extention}"
+        blueBlockValue.text (d) -> "#{d.votes_pct} #{extention}"

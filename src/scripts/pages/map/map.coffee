@@ -11,10 +11,10 @@
     else
       false
 
-  $scope.toggleShowPct = ->
+  $scope.toggleshowMan = ->
     if !doubleClickCheck
       doubleClickCheck = true
-      $scope.showPct = !$scope.showPct
+      $scope.showMan = !$scope.showMan
 
       $timeout ->
         doubleClickCheck = false
