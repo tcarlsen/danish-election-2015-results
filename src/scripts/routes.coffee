@@ -3,6 +3,9 @@
     .when "/",
       templateUrl: "map.html"
       controller: "MapController"
+    .when "/teaser/:url",
+      templateUrl: "teaser.html"
+      controller: "TeaserController"
     .when "/resultater/landet/:party",
       templateUrl: "party.html"
       controller: "PartyController"
