@@ -1,5 +1,5 @@
 div.tab-container
-  div.teaser-header Resultat 2015 - optalte stemmer {{json.map.votes_counted_pct | number}}%
+  div.teaser-header Optalte stemmer {{json.map.votes_counted_pct | number}}%
     a(ng-href="{{appUrl}}" target="_top").call-to-action.mobile-hide Klik her for at følge valgets udvikling
     .clearfix
   div.tab-body(ng-mouseover="toggleshowMan(false)" ng-mouseout="toggleshowMan(true)" ng-if="!detectmobile()")
