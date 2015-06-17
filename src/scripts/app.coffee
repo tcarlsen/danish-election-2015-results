@@ -1,5 +1,5 @@
-apiIp = "//54.77.4.249:8000"
-socket = io "//54.77.4.249:8080"
+apiIp = "//fv15api.bemit.dk"
+socket = io "http://hosting-docker-fv15-ws-1802147016.eu-west-1.elb.amazonaws.com"
 
 angular.module "ng-app", [
   "ngTouch"
