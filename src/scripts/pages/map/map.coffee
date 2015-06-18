@@ -28,7 +28,7 @@
     .success (data) ->
       $scope.json.map = data
 
-      if data.votes_counted_pct is 100
+      if data.votes_counted_pct >= 95 and data.blue_block.mandates isnt 0
         $scope.showMan = true
         enableMouseover = true
     .error (data, status, headers, config) ->
@@ -40,7 +40,7 @@
     $scope.$apply ->
       $scope.json.map.votes_counted_pct = message.result.votes_counted_pct
 
-      if message.result.votes_counted_pct is 100
+      if message.result.votes_counted_pct >= 95 and $scope.json.map.blue_block.mandates isnt 0
         $scope.showMan = true
         enableMouseover = true
       else
