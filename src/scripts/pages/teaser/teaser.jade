@@ -10,4 +10,4 @@ div.tab-container
         p(ng-show="showMan") {{party.mandates}}
         p(ng-hide="showMan") {{party.votes_pct | number}}%
     .clearfix
-  div.call-to-action-mobile.mobile-show Klik her for at følge valgets udvikling
+  a(ng-href="{{appUrl}}" target="_top").call-to-action-mobile.mobile-show Klik her for at følge valgets udvikling
