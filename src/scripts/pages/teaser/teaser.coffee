@@ -27,4 +27,4 @@
         $scope.showMan = true
         enableMouseover = true
     .error (data, status, headers, config) ->
-      alert "Der var et problem med at skabe kontakt til vores server, prøv igen senere."
+      return
