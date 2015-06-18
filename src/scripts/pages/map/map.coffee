@@ -1,4 +1,4 @@
-.controller "MapController", ($scope, $http, $timeout) ->
+.controller "MapController", ($scope, $http, $timeout, tracker) ->
   doubleClickCheck = false
   enableMouseover = false
 
@@ -65,3 +65,5 @@
     $scope.json.map.latest_votes_counted_complete.push(message.result)
     $scope.$apply ->
       $scope.json.map.latest_votes_counted_complete.reverse()
+
+  tracker.track()

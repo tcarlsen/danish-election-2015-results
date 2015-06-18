@@ -1,4 +1,4 @@
-.controller "PartyController", ($scope, $http, $routeParams) ->
+.controller "PartyController", ($scope, $http, $routeParams, tracker) ->
   apiUrl = "landet/#{$routeParams.party}"
 
   if $routeParams.path and $routeParams.id
@@ -25,3 +25,5 @@
     if message.result.ident is $routeParams.id and message.result.party_letter is $routeParams.party
       $scope.$apply ->
         $scope.json.party = message.result
+
+  tracker.track()

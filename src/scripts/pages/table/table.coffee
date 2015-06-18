@@ -1,4 +1,4 @@
-.controller "TableController", ($scope, $http, $routeParams) ->
+.controller "TableController", ($scope, $http, $routeParams, tracker) ->
   apiUrl = $routeParams.path
   apiUrl+= "/#{$routeParams.id}" if $routeParams.id
 
@@ -26,3 +26,5 @@
     if message.result.ident is thisIdent
       $scope.$apply ->
         $scope.json.table = message.result
+
+  tracker.track()
