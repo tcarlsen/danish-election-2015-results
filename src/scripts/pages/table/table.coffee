@@ -3,6 +3,8 @@
   apiUrl+= "/#{$routeParams.id}" if $routeParams.id
 
   $scope.json = $scope.json or {}
+  $scope.order = "-votes_pct"
+  $scope.reverse = false
 
   $scope.changeOrder = (order) ->
     if $scope.order is order

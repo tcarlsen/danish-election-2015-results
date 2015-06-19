@@ -5,6 +5,8 @@
     apiUrl = "#{$routeParams.path}/#{$routeParams.id}/#{$routeParams.party}"
 
   $scope.json = $scope.json or {}
+  $scope.order = "-votes"
+  $scope.reverse = false
 
   $scope.changeOrder = (order) ->
     if $scope.order is order
